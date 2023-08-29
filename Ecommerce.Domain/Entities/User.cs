@@ -5,7 +5,7 @@ namespace Ecommerce.Domain.Entities
 {
     public class User
     {
-        public Guid UserId { get; set; }
+        public string UserId { get; set; }
 
         [Required]
         [StringLength(50)]
@@ -24,5 +24,6 @@ namespace Ecommerce.Domain.Entities
         public Enums.Roles Role { get; set; }
 
         public string? Address { get; set; }
+        public bool IsDeleted { get; set; }
     }
 }

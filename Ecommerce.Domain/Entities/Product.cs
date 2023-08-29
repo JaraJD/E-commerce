@@ -4,7 +4,7 @@ namespace Ecommerce.Domain.Entities
 {
     public class Product
     {
-        public Guid ProductId { get; set; }
+        public string ProductId { get; set; }
 
         [Required]
         [StringLength(100)]
@@ -18,14 +18,14 @@ namespace Ecommerce.Domain.Entities
         public string Description { get; set; }
 
         [Required]
-        public Guid CategoryId { get; set; }
+        public string CategoryId { get; set; }
 
         [Required]
-        public Guid StoreId { get; set; }
+        public string StoreId { get; set; }
 
         [Range(0, int.MaxValue)]
         public int Stock { get; set; }
 
-
+        public bool IsDeleted { get; set; }
     }
 }

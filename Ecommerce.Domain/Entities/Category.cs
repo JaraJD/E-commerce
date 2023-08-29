@@ -4,7 +4,7 @@ namespace Ecommerce.Domain.Entities
 {
     public class Category
     {
-        public Guid CategoryId { get; set; }
+        public string CategoryId { get; set; }
 
         [Required]
         [StringLength(50)]
@@ -12,6 +12,7 @@ namespace Ecommerce.Domain.Entities
 
         [StringLength(200)]
         public string Description { get; set; }
+        public bool IsDeleted { get; set; }
 
     }
 }

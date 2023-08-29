@@ -4,7 +4,7 @@ namespace Ecommerce.Domain.Entities
 {
     public class Store
     {
-        public Guid StoreId { get; set; }
+        public string StoreId { get; set; }
 
         [Required]
         [StringLength(100)]
@@ -13,5 +13,6 @@ namespace Ecommerce.Domain.Entities
         [StringLength(200)]
         public string Site { get; set; }
 
+        public bool IsDeleted { get; set; }
     }
 }
