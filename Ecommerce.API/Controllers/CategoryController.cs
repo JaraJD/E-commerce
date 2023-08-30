@@ -20,15 +20,33 @@ namespace Ecommerce.API.Controllers
         }
 
         [HttpPost]
-        public async Task<string> CreateBalance([FromBody] CreateCategoryCommand command)
+        public async Task<string> CreateCategory([FromBody] CreateCategoryCommand command)
         {
             return await _categorUseCase.CreateCategory(command);
         }
 
-        [HttpGet("GetCategory")]
-        public async Task<CategoryQueryVm> GetBalanceByUserId(GetCategoryIdQuery id)
+        [HttpGet("GetAllCategories")]
+        public async Task<List<CategoryQueryVm>> GetCategories()
+        {
+            return await _categorUseCase.GetAllCategories();
+        }
+
+        [HttpGet("GetCategory/{id}")]
+        public async Task<CategoryQueryVm> GetCategoryById(string id)
         {
             return await _categorUseCase.GetCategoryeById(id);
+        }
+
+        [HttpPut("UpdateCategory")]
+        public async Task<string> UpdateCategory([FromBody] UpdateCategoryCommand command)
+        {
+            return await _categorUseCase.UpdateCategory(command);
+        }
+
+        [HttpDelete("DeleteCategory")]
+        public async Task<string> DeleteCategory([FromBody] DeleteCategoryCommand command)
+        {
+            return await _categorUseCase.DeleteCategory(command);
         }
     }
 }

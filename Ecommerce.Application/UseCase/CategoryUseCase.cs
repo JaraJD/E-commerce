@@ -29,9 +29,17 @@ namespace Ecommerce.Application.UseCase
             return await _repository.DeleteCategoryAsync(categoryId);
         }
 
-        public async Task<CategoryQueryVm> GetCategoryeById(GetCategoryIdQuery categoryId)
+        public async Task<List<CategoryQueryVm>> GetAllCategories()
         {
-            return await _repository.GetCategoryByIdAsync(categoryId);
+            var categoriesList = await _repository.GetAllCategoriesAsync();
+            return _mapper.Map<List<CategoryQueryVm>>(categoriesList);
+        }
+        
+
+        public async Task<CategoryQueryVm> GetCategoryeById(string categoryId)
+        {
+            var category = await _repository.GetCategoryByIdAsync(categoryId);
+            return _mapper.Map<CategoryQueryVm>(category);
         }
 
         public async Task<string> UpdateCategory(UpdateCategoryCommand category)

@@ -5,6 +5,6 @@ namespace Ecommerce.Application.Features.Commands.CategoryCommands
     public class DeleteCategoryCommand
     {
         [Required]
-        public Guid CategoryId { get; set; }
+        public string CategoryId { get; set; }
     }
 }

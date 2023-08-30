@@ -5,7 +5,7 @@ namespace Ecommerce.Application.Features.Commands.CategoryCommands
     public class UpdateCategoryCommand
     {
         [Required]
-        public Guid CategoryId { get; set; }
+        public string CategoryId { get; set; }
 
         [StringLength(50)]
         public string? Name { get; set; }

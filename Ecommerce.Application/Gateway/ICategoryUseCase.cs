@@ -11,6 +11,8 @@ namespace Ecommerce.Application.Gateway
 
         Task<string> DeleteCategory(DeleteCategoryCommand categoryId);
 
-        Task<CategoryQueryVm> GetCategoryeById(GetCategoryIdQuery categoryId);
+        Task<List<CategoryQueryVm>> GetAllCategories();
+
+        Task<CategoryQueryVm> GetCategoryeById(string categoryId);
     }
 }

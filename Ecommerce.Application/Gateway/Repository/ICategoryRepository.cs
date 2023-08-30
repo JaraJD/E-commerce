@@ -12,6 +12,8 @@ namespace Ecommerce.Application.Gateway.Repository
 
         Task<string> DeleteCategoryAsync(DeleteCategoryCommand categoryId);
 
-        Task<CategoryQueryVm> GetCategoryByIdAsync(GetCategoryIdQuery categoryId);
+        Task<List<Category>> GetAllCategoriesAsync();
+
+        Task<Category> GetCategoryByIdAsync(string categoryId);
     }
 }

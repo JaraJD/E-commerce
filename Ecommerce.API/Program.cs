@@ -6,6 +6,7 @@ using Ecommerce.Application.Gateway.Repository;
 using Ecommerce.MongoAdapter.Repositories;
 using Ecommerce.Application.Mapping;
 using AutoMapper.Data;
+using Ecommerce.MongoAdapter.Common.Mapping;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,6 +17,12 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddAutoMapper(config => config.AddDataReaderMapping(), typeof(MappingProfile));
+
+builder.Services.AddAutoMapper(config =>{
+    config.AddProfile<MappingProfile>();
+    config.AddProfile<MappingProfileMongo>();
+});
+
 
 builder.Services.AddSingleton<IContext>(provider => new Context(builder.Configuration.GetConnectionString("DefaultConnection"), "Ecommerce"));
 
