@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Ecommerce.Domain.Features.Commands.CategoryCommands
+namespace Ecommerce.Application.Features.Commands.CategoryCommands
 {
     public class DeleteCategoryCommand
     {

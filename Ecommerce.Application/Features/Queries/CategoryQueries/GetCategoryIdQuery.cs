@@ -1,10 +1,10 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Ecommerce.Domain.Features.Queries.CategoryQueries
+namespace Ecommerce.Application.Features.Queries.CategoryQueries
 {
     public class GetCategoryIdQuery
     {
         [Required]
-        public Guid CategoryId { get; set; }
+        public string CategoryId { get; set; }
     }
 }

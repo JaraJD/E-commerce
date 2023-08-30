@@ -1,4 +1,4 @@
-﻿namespace Ecommerce.Domain.Features.Queries.CategoryQueries
+﻿namespace Ecommerce.Application.Features.Queries.CategoryQueries
 {
     public class CategoryQueryVm
     {

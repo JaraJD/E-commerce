@@ -1,5 +1,5 @@
-﻿using Ecommerce.Domain.Features.Commands.CategoryCommands;
-using Ecommerce.Domain.Features.Queries.CategoryQueries;
+﻿using Ecommerce.Application.Features.Commands.CategoryCommands;
+using Ecommerce.Application.Features.Queries.CategoryQueries;
 
 namespace Ecommerce.Application.Gateway
 {
@@ -11,6 +11,6 @@ namespace Ecommerce.Application.Gateway
 
         Task<string> DeleteCategory(DeleteCategoryCommand categoryId);
 
-        Task<CategoryQueryVm> GetCategoryeById(string categoryId);
+        Task<CategoryQueryVm> GetCategoryeById(GetCategoryIdQuery categoryId);
     }
 }
