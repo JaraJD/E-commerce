@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Ecommerce.Domain.Entities;
+using System.ComponentModel.DataAnnotations;
 
 namespace Ecommerce.Application.Features.Commands.SaleCommands
 {
@@ -12,6 +13,9 @@ namespace Ecommerce.Application.Features.Commands.SaleCommands
 
         [Required]
         public decimal TotalPrice { get; set; }
+
+        [Required]
+        public List<ProductSaleItem> products { get; set; }
 
         [Required]
         public DateTime TransaccionTime { get; set; }

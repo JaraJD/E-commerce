@@ -9,38 +9,41 @@ namespace Ecommerce.Application.UseCase
 {
     public class SaleUseCase : ISaleUseCase
     {
-        private readonly ICategoryRepository _repository;
+        private readonly ISaleRepository _repository;
         private readonly IMapper _mapper;
 
-        public SaleUseCase(ICategoryRepository repository, IMapper mapper)
+        public SaleUseCase(ISaleRepository repository, IMapper mapper)
         {
             _repository = repository;
             _mapper = mapper;
         }
-
-        public Task<string> CreateSale(Sale sale)
+        
+        public async Task<string> CreateSale(CreateSaleCommand saleCommand)
         {
-            throw new NotImplementedException();
+            var sale = _mapper.Map<Sale>(saleCommand);
+            return await _repository.CreateSaleAsync(sale);
         }
 
-        public Task<string> DeleteSale(DeleteSaleCommand saleId)
+        public async Task<string> DeleteSale(DeleteSaleCommand saleId)
         {
-            throw new NotImplementedException();
+            return await _repository.DeleteSaleAsync(saleId);
         }
 
-        public Task<List<SaleQueryVm>> GetAllSales()
+        public async Task<List<SaleQueryVm>> GetAllSales()
         {
-            throw new NotImplementedException();
+            var salessList = await _repository.GetAllSalesAsync();
+            return _mapper.Map<List<SaleQueryVm>>(salessList);
         }
 
-        public Task<SaleQueryVm> GetSaleById(string saleId)
+        public async Task<SaleQueryVm> GetSaleById(string saleId)
         {
-            throw new NotImplementedException();
+            var sale = await _repository.GetSaleByIdAsync(saleId);
+            return _mapper.Map<SaleQueryVm>(sale);
         }
 
-        public Task<string> UpdateSale(UpdateSaleCommand sale)
+        public async Task<string> UpdateSale(UpdateSaleCommand sale)
         {
-            throw new NotImplementedException();
+            return await _repository.UpdateSaleAsync(sale);
         }
     }
 }

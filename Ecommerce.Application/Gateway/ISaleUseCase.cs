@@ -6,7 +6,7 @@ namespace Ecommerce.Application.Gateway
 {
     public interface ISaleUseCase
     {
-        Task<string> CreateSale(Sale sale);
+        Task<string> CreateSale(CreateSaleCommand saleCommand);
 
         Task<string> UpdateSale(UpdateSaleCommand sale);
 
