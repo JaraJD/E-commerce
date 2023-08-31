@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Ecommerce.Application.Features.Commands.UserCommands
 {
-    internal class CreateUserCommand
+    public class CreateUserCommand
     {
     }
 }

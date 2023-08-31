@@ -12,6 +12,7 @@ namespace Ecommerce.MongoAdapter.Common.Mapping
             CreateMap<Product, ProductMongo>().ReverseMap(); 
             CreateMap<Sale, SaleMongo>().ReverseMap();
             CreateMap<Store, StoreMongo>().ReverseMap();
+            CreateMap<User, UserMongo>().ReverseMap();
         }
     }
 }
