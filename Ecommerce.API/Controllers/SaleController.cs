@@ -15,12 +15,10 @@ namespace Ecommerce.API.Controllers
     {
 
         private readonly ISaleUseCase _saleUseCase;
-        private readonly IMapper _mapper;
 
-        public SaleController(ISaleUseCase saleUseCase, IMapper mapper)
+        public SaleController(ISaleUseCase saleUseCase)
         {
             _saleUseCase = saleUseCase;
-            _mapper = mapper;
         }
 
 

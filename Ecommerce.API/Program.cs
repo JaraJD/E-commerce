@@ -1,28 +1,42 @@
-using Ecommerce.MongoAdapter.Interfaces;
-using Ecommerce.MongoAdapter;
-using Ecommerce.Application.Gateway;
-using Ecommerce.Application.UseCase;
-using Ecommerce.Application.Gateway.Repository;
-using Ecommerce.MongoAdapter.Repositories;
-using Ecommerce.Application.Mapping;
-using AutoMapper.Data;
-using Ecommerce.MongoAdapter.Common.Mapping;
 using AspNetCore.Identity.MongoDbCore.Extensions;
 using AspNetCore.Identity.MongoDbCore.Infrastructure;
+using AutoMapper.Data;
+using Ecommerce.Application.Gateway;
+using Ecommerce.Application.Gateway.Repository;
+using Ecommerce.Application.Mapping;
+using Ecommerce.Application.UseCase;
+using Ecommerce.Domain.Entities;
+using Ecommerce.MongoAdapter;
+using Ecommerce.MongoAdapter.Common.Mapping;
+using Ecommerce.MongoAdapter.Interfaces;
+using Ecommerce.MongoAdapter.Repositories;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
-using MongoDB.Bson.Serialization.Serializers;
 using MongoDB.Bson.Serialization;
+using MongoDB.Bson.Serialization.Serializers;
 using System.Text;
-using Ecommerce.Domain.Entities;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-builder.Services.Configure<MongoDbSettings>(builder.Configuration.GetSection(nameof(MongoDbSettings)));
+builder.Services.Configure<MongoDbSettingsEntity>(builder.Configuration.GetSection(nameof(MongoDbSettings)));
+builder.Services.AddSingleton<IContext, Context>();
+builder.Services.AddSingleton<ICategoryUseCase, CategoryUseCase>();
+builder.Services.AddSingleton<ICategoryRepository, CategoryRepository>();
+
+builder.Services.AddSingleton<IProductUseCase, ProductUseCase>();
+builder.Services.AddSingleton<IProductRepository, ProductRepository>();
+
+builder.Services.AddSingleton<ISaleUseCase, SaleUseCase>();
+builder.Services.AddSingleton<ISaleRepository, SaleRepository>();
+
+builder.Services.AddSingleton<IStoreUseCase, StoreUseCase>();
+builder.Services.AddSingleton<IStoreRepository, StoreRepository>();
+
+
 BsonSerializer.RegisterSerializer(new GuidSerializer(MongoDB.Bson.BsonType.String));
 BsonSerializer.RegisterSerializer(new DateTimeSerializer(MongoDB.Bson.BsonType.String));
 BsonSerializer.RegisterSerializer(new DateTimeOffsetSerializer(MongoDB.Bson.BsonType.String));
@@ -109,19 +123,9 @@ builder.Services.AddAutoMapper(config =>{
 });
 
 
-builder.Services.AddSingleton<IContext>(provider => new Context(builder.Configuration.GetConnectionString("DefaultConnection"), "Ecommerce"));
+//builder.Services.AddSingleton<IContext>(provider => new Context(builder.Configuration.GetConnectionString("DefaultConnection"), "Ecommerce"));
 
-builder.Services.AddScoped<ICategoryUseCase, CategoryUseCase>();
-builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
 
-builder.Services.AddScoped<IProductUseCase, ProductUseCase>();
-builder.Services.AddScoped<IProductRepository, ProductRepository>();
-
-builder.Services.AddScoped<ISaleUseCase, SaleUseCase>();
-builder.Services.AddScoped<ISaleRepository, SaleRepository>();
-
-builder.Services.AddScoped<IUserUseCase, UserUseCase>();
-builder.Services.AddScoped<IUserRepository, UserRepository>();
 
 var app = builder.Build();
 

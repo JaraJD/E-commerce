@@ -1,5 +1,7 @@
-﻿using Ecommerce.MongoAdapter.EntitiesMongo;
+﻿using Ecommerce.Domain.Entities;
+using Ecommerce.MongoAdapter.EntitiesMongo;
 using Ecommerce.MongoAdapter.Interfaces;
+using Microsoft.Extensions.Options;
 using MongoDB.Driver;
 
 namespace Ecommerce.MongoAdapter
@@ -8,10 +10,10 @@ namespace Ecommerce.MongoAdapter
     {
         private readonly IMongoDatabase _database;
 
-        public Context(string stringConnection, string DBname)
+        public Context(IOptions<MongoDbSettingsEntity> options)
         {
-            MongoClient client = new MongoClient(stringConnection);
-            _database = client.GetDatabase(DBname);
+            MongoClient client = new MongoClient(options.Value.ConnectionString);
+            _database = client.GetDatabase(options.Value.DatabaseName);
         }
 
         public IMongoCollection<CategoryMongo> Category => _database.GetCollection<CategoryMongo>("category");

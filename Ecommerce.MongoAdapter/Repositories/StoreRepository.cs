@@ -1,9 +1,11 @@
-﻿using AutoMapper;
+﻿using Ardalis.GuardClauses;
+using AutoMapper;
 using Ecommerce.Application.Features.Commands.StoreCommands;
 using Ecommerce.Application.Gateway.Repository;
 using Ecommerce.Domain.Entities;
 using Ecommerce.MongoAdapter.EntitiesMongo;
 using Ecommerce.MongoAdapter.Interfaces;
+using MongoDB.Bson;
 using MongoDB.Driver;
 
 namespace Ecommerce.MongoAdapter.Repositories
@@ -19,9 +21,12 @@ namespace Ecommerce.MongoAdapter.Repositories
             _mapper = mapper;
         }
 
-        public Task<string> CreateStoreAsync(Store store)
+        public async Task<string> CreateStoreAsync(Store store)
         {
-            throw new NotImplementedException();
+            Guard.Against.Null(store, nameof(store));
+
+            await coleccionStore.InsertOneAsync(_mapper.Map<StoreMongo>(store));
+            return "Store Created".ToJson();
         }
 
         public Task<string> DeleteStoreAsync(DeleteStoreCommand storeId)
@@ -29,9 +34,16 @@ namespace Ecommerce.MongoAdapter.Repositories
             throw new NotImplementedException();
         }
 
-        public Task<List<Store>> GetAllStoreAsync()
+        public async Task<List<Store>> GetAllStoreAsync()
         {
-            throw new NotImplementedException();
+            var sales = await coleccionStore.FindAsync(Builders<StoreMongo>.Filter.Eq(b => b.IsDeleted, false));
+            var saleList = sales.ToEnumerable().Select(x => _mapper.Map<Store>(x)).ToList();
+            if (saleList.Count == 0)
+            {
+                throw new Exception("Stores not found.");
+            }
+
+            return saleList;
         }
 
         public Task<Store> GetStoreByIdAsync(string storeId)

@@ -2,6 +2,7 @@
 using Ecommerce.Application.Features.Commands.ProductCommands;
 using Ecommerce.Application.Features.Queries.ProductQueries;
 using Ecommerce.Application.Gateway;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Ecommerce.API.Controllers
@@ -11,12 +12,10 @@ namespace Ecommerce.API.Controllers
     public class ProductController : ControllerBase
     {
         private readonly IProductUseCase _productUseCase;
-        private readonly IMapper _mapper;
 
-        public ProductController(IProductUseCase productUseCase, IMapper mapper)
+        public ProductController(IProductUseCase productUseCase)
         {
             _productUseCase = productUseCase;
-            _mapper = mapper;
         }
 
         [HttpPost]
@@ -25,6 +24,7 @@ namespace Ecommerce.API.Controllers
             return await _productUseCase.CreateProduct(command);
         }
 
+        [Authorize]
         [HttpGet("GetAllProducts")]
         public async Task<List<ProductQueryVm>> GetProducts()
         {

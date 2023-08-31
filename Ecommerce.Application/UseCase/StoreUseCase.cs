@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Ecommerce.Application.Features.Commands.StoreCommands;
+using Ecommerce.Application.Features.Queries.CategoryQueries;
 using Ecommerce.Application.Features.Queries.StoreQueries;
 using Ecommerce.Application.Gateway;
 using Ecommerce.Application.Gateway.Repository;
@@ -9,18 +10,19 @@ namespace Ecommerce.Application.UseCase
 {
     public class StoreUseCase : IStoreUseCase
     {
-        private readonly ICategoryRepository _repository;
+        private readonly IStoreRepository _repository;
         private readonly IMapper _mapper;
 
-        public StoreUseCase(ICategoryRepository repository, IMapper mapper)
+        public StoreUseCase(IStoreRepository repository, IMapper mapper)
         {
             _repository = repository;
             _mapper = mapper;
         }
 
-        public Task<string> CreateStore(Store store)
+        public async Task<string> CreateStore(CreateStoreCommand storeCommand)
         {
-            throw new NotImplementedException();
+            var store = _mapper.Map<Store>(storeCommand);
+            return await _repository.CreateStoreAsync(store);
         }
 
         public Task<string> DeleteStore(DeleteStoreCommand storeId)
@@ -28,12 +30,13 @@ namespace Ecommerce.Application.UseCase
             throw new NotImplementedException();
         }
 
-        public Task<List<StoreQueryVm>> GetAllStoreAsync()
+        public async Task<List<StoreQueryVm>> GetAllStore()
         {
-            throw new NotImplementedException();
+            var storesList = await _repository.GetAllStoreAsync();
+            return _mapper.Map<List<StoreQueryVm>>(storesList);
         }
 
-        public Task<StoreQueryVm> GetStoreByIdAsync(string storeId)
+        public Task<StoreQueryVm> GetStoreById(string storeId)
         {
             throw new NotImplementedException();
         }
