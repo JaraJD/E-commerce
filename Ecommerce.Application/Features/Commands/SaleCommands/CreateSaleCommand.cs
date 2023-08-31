@@ -1,12 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace Ecommerce.Application.Features.Commands.SaleCommands
 {
-    internal class CreateSaleCommand
+    public class CreateSaleCommand
     {
+        [Required]
+        public string StoreId { get; set; }
+
+        [Required]
+        public string UserId { get; set; }
+
+        [Required]
+        public decimal TotalPrice { get; set; }
+
+        [Required]
+        public DateTime TransaccionTime { get; set; }
     }
 }

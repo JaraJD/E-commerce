@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace Ecommerce.Application.Features.Commands.SaleCommands
 {
-    internal class DeleteSaleCommand
+    public class DeleteSaleCommand
     {
+        [Required]
+        public string SaleId { get; set; }
     }
 }

@@ -1,12 +1,7 @@
-﻿using MongoDB.Bson.Serialization.Attributes;
-using System.ComponentModel.DataAnnotations;
-
-namespace Ecommerce.MongoAdapter.EntitiesMongo
+﻿namespace Ecommerce.Application.Features.Queries.ProductQueries
 {
-    public class ProductMongo
+    public class ProductQueryVm
     {
-        [BsonId]
-        [BsonRepresentation(MongoDB.Bson.BsonType.ObjectId)]
         public string ProductId { get; set; }
         public string Name { get; set; }
         public decimal Price { get; set; }
@@ -14,6 +9,5 @@ namespace Ecommerce.MongoAdapter.EntitiesMongo
         public string CategoryId { get; set; }
         public string StoreId { get; set; }
         public int Stock { get; set; }
-        public bool IsDeleted { get; set; }
     }
 }

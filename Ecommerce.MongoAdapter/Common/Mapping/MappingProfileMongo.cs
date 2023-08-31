@@ -9,6 +9,9 @@ namespace Ecommerce.MongoAdapter.Common.Mapping
         public MappingProfileMongo() 
         {
             CreateMap<Category, CategoryMongo>().ReverseMap();
+            CreateMap<Product, ProductMongo>().ReverseMap(); 
+            CreateMap<Sale, SaleMongo>().ReverseMap();
+            CreateMap<Store, StoreMongo>().ReverseMap();
         }
     }
 }

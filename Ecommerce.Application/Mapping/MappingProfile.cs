@@ -1,6 +1,12 @@
 ﻿using AutoMapper;
 using Ecommerce.Application.Features.Commands.CategoryCommands;
+using Ecommerce.Application.Features.Commands.ProductCommands;
+using Ecommerce.Application.Features.Commands.SaleCommands;
+using Ecommerce.Application.Features.Commands.StoreCommands;
 using Ecommerce.Application.Features.Queries.CategoryQueries;
+using Ecommerce.Application.Features.Queries.ProductQueries;
+using Ecommerce.Application.Features.Queries.SaleQueries;
+using Ecommerce.Application.Features.Queries.StoreQueries;
 using Ecommerce.Domain.Entities;
 
 namespace Ecommerce.Application.Mapping
@@ -11,7 +17,16 @@ namespace Ecommerce.Application.Mapping
         {
             CreateMap<Category, CreateCategoryCommand>().ReverseMap();
             CreateMap<Category, CategoryQueryVm>().ReverseMap();
-            
+
+            CreateMap<Product, CreateProductCommand>().ReverseMap();
+            CreateMap<Product, ProductQueryVm>().ReverseMap();
+
+            CreateMap<Sale, CreateSaleCommand>().ReverseMap();
+            CreateMap<Sale, SaleQueryVm>().ReverseMap();
+
+            CreateMap<Store, CreateStoreCommand>().ReverseMap();
+            CreateMap<Store, StoreQueryVm>().ReverseMap();
+
         }
     }
 }

@@ -29,6 +29,9 @@ builder.Services.AddSingleton<IContext>(provider => new Context(builder.Configur
 builder.Services.AddScoped<ICategoryUseCase, CategoryUseCase>();
 builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
 
+builder.Services.AddScoped<IProductUseCase, ProductUseCase>();
+builder.Services.AddScoped<IProductRepository, ProductRepository>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

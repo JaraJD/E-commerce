@@ -1,19 +1,14 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Ecommerce.Domain.Entities;
 
-namespace Ecommerce.Application.Features.Commands.SaleCommands
+namespace Ecommerce.Application.Features.Queries.SaleQueries
 {
-    public class UpdateSaleCommand
+    public class SaleQueryVm
     {
-        [Required]
         public string SaleId { get; set; }
-        [Required]
         public string StoreId { get; set; }
-
-        [Required]
         public string UserId { get; set; }
-
+        public List<Product> products { get; set; }
         public decimal TotalPrice { get; set; }
-
         public DateTime TransaccionTime { get; set; }
     }
 }

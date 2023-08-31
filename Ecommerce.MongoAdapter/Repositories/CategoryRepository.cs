@@ -25,7 +25,6 @@ namespace Ecommerce.MongoAdapter.Repositories
         public async Task<string> CreateCategoryAsync(Category category)
         {
             Guard.Against.Null(category, nameof(category));
-            //Guard.Against.NullOrEmpty(category.UserId, nameof(balance.UserId), "UserId Required. ");
 
             await coleccionCategory.InsertOneAsync(_mapper.Map<CategoryMongo>(category));
             return "Category Created".ToJson();
@@ -41,7 +40,7 @@ namespace Ecommerce.MongoAdapter.Repositories
             categoryToDelete.IsDeleted = true;
             var updateResult = await coleccionCategory.ReplaceOneAsync(filter, categoryToDelete);
 
-            return "Balance Eliminated".ToJson();
+            return "Category Eliminated".ToJson();
         }
 
         public async Task<List<Category>> GetAllCategoriesAsync()
@@ -80,7 +79,7 @@ namespace Ecommerce.MongoAdapter.Repositories
             var update = Builders<CategoryMongo>.Update.Set(b => b.Name, category.Name).Set(b => b.Description, category.Description);
             await coleccionCategory.UpdateOneAsync(filter, update);
 
-            return "Balance Updated".ToJson();
+            return "Category Updated".ToJson();
         }
     }
 }
