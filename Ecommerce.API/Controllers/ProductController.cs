@@ -17,7 +17,7 @@ namespace Ecommerce.API.Controllers
         {
             _productUseCase = productUseCase;
         }
-
+        [Authorize]
         [HttpPost]
         public async Task<string> CreateProduct([FromBody] CreateProductCommand command)
         {
@@ -30,19 +30,19 @@ namespace Ecommerce.API.Controllers
         {
             return await _productUseCase.GetAllProducts();
         }
-
+        [Authorize]
         [HttpGet("GetProduct/{id}")]
         public async Task<ProductQueryVm> GetProductById(string id)
         {
             return await _productUseCase.GetProductById(id);
         }
-
+        [Authorize]
         [HttpPut("UpdateProduct")]
         public async Task<string> UpdateProduct([FromBody] UpdateProductCommand command)
         {
             return await _productUseCase.UpdateProduct(command);
         }
-
+        [Authorize]
         [HttpDelete("DeleteProduct")]
         public async Task<string> DeleteProduct([FromBody] DeleteProductCommand command)
         {
