@@ -9,10 +9,13 @@ Para la estructura de la aplicación se decide implementar una arquitectura Limp
 e independencia de la aplicación aplicando también principios SOLID y obtener como resultado una aplicación de alta flexibilidad y modularidad.
 Aplicando Inversión de dependencias e inyección de dependencias para la comunicación entre las capas mediante abstracciones como interfaces y 
 que no sea una dependencia directa entre las capas, esto nos ayuda a que sea una aplicación altamente modular y que con facilidad se pueda adaptar
-nuevas funcionalidades como servicios de mensajería, conexiones a diferentes bases de datos, sin afectar el dominio de la aplicación, ya que la
-capa de dominio es totalmente agnóstica a las tecnologías que se usen, también se implementan patrones de diseño creacionales, como singleton para utilizar 
+nuevas funcionalidades como servicios de mensajería, conexiones a diferentes bases de datos, sin afectar el dominio de la aplicación, ya que la capa
+de dominio es totalmente agnóstica a las tecnologías que se usen, también se implementan patrones de diseño creacionales, como singleton para utilizar 
 una misma instancia para conexiones a bases de datos, de comportamiento como Command para convertir una solicitud en un objeto independiente y contenga 
 solo la información sobre la solicitud y Mediador para restringir las comunicaciones directas y que se realicen a través de un objeto mediador.
+
+Para acceder a los endpoint de la aplicación se debe crear un usuario primero y logearse, ya que la aplicación usa JWT para la seguridad y los endpoint 
+necesitan token puesto que están protegidos. 
 
 ## Arquitectura Basada en :
 
